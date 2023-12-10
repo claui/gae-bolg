@@ -1,0 +1,56 @@
+[build-system]
+requires = ["poetry-core>=1.1.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "gae_bolg"
+version = "0.1.0"
+description = "Word search puzzle for Linux"
+authors = [
+    "Claudia Pellegrino <clau@tiqua.de>",
+]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "~3.9"
+colorama = "*"
+dataclass-wizard = "~=0.22"
+fire = "*"
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "*"
+mypy = "~=0.991"
+pdoc = "~=12.3"
+poethepoet = "~=0.22"
+pylint = "~=2.17"
+pytest = "*"
+types-colorama = "*"
+
+[tool.poetry.scripts]
+gae-bolg = "gae_bolg.cli:run"
+
+[tool.poe]
+verbosity = -1
+
+[tool.poe.tasks]
+tasks.cmd = "poe -v"
+tasks.help = "List available tasks"
+cli.script = "gae_bolg.cli:run"
+cli.help = "Run command line interface"
+doc.cmd = "pdoc gae_bolg !gae_bolg.settings"
+doc.help = "Browse documentation"
+hello.script = "gae_bolg.cli:run('hello')"
+hello.help = "Run hello"
+linter.cmd = "pylint --enable-all-extensions gae_bolg"
+linter.help = "Check for style violations"
+tests.cmd = "pytest"
+tests.help = "Run test suite"
+typecheck.cmd = "mypy"
+typecheck.help = "Run static type checker"
+
+[tool.pyright]
+reportUnsupportedDunderAll = "none"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+xfail_strict = true
