@@ -40,8 +40,8 @@ def test_draw(draw_path_args: tuple[nx.Graph, int, Random]) -> None:
     random: Random
     graph, length, random = draw_path_args
 
-    actual: list[int] = path.draw(graph, length, random)
     note("\n".join(["Called with graph:"] + list(generate_network_text(graph))))
+    actual: list[int] = path.draw(graph, length, random)
     note(f"Returned path: {actual}")
     assert isinstance(actual, list)
     assert len(actual) == length
