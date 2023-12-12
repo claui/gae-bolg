@@ -26,7 +26,7 @@ board_builder = hypothesis_networkx.graph_builder(
 @st.composite
 def draw_path_strategy(draw: st.DrawFn) -> tuple[nx.Graph, int, Random]:
     graph = draw(board_builder)
-    length: int = draw(st.integers(min_value=1, max_value=len(graph.nodes)))
+    length: int = draw(st.integers(min_value=1, max_value=nx.diameter(graph)))
     return graph, length, draw(st.randoms())
 
 
