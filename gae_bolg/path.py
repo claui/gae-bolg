@@ -25,6 +25,7 @@ def _random_paths_starting_at(
         raise ValueError(length)
     if length == 1:
         yield [source]
+        return
     tail: nx.Graph = graph.copy()
     tail.remove_node(source)
     neighbors: list[int] = list(graph.neighbors(source))  # type: ignore
