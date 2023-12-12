@@ -2,7 +2,7 @@
 
 from random import Random
 
-from hypothesis import given, note, settings, strategies as st
+from hypothesis import given, note, strategies as st
 import hypothesis_networkx  # type: ignore
 import networkx as nx
 from networkx.readwrite.text import generate_network_text  # type: ignore
@@ -33,7 +33,6 @@ def draw_path_strategy(
 
 
 @given(draw_path_strategy())
-@settings(max_examples=10)
 def test_draw(draw_path_args: tuple[nx.Graph, int, Random]) -> None:
     graph: nx.Graph
     length: int
