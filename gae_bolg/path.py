@@ -25,9 +25,8 @@ def _random_paths_starting_at(
         raise ValueError(length)
     if length == 1:
         yield [source]
-    tail: nx.Graph = nx.subgraph_view(
-        graph, filter_node=lambda node: node != source
-    )  # type: ignore
+    tail: nx.Graph = graph.copy()
+    tail.remove_node(source)
     neighbors: list[int] = list(graph.neighbors(source))  # type: ignore
     next_node: int
     for next_node in random.sample(neighbors, k=len(neighbors)):
